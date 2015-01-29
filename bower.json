@@ -1,0 +1,8 @@
+{
+  "name": "sass-color-palette",
+  "version": "0.0.0",
+  "description": "Create a set of Sass color variables from an image.",
+  "devDependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}
