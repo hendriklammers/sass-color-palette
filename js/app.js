@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', [])
+        .module('app', ['ui.sortable'])
         .controller('ColorListController', function() {
             var vm = this;
 
