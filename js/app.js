@@ -15,6 +15,10 @@
                 {hex: '#f1c40f', name: 'yellow'},
                 {hex: '#8e44ad', name: 'purple'}
             ];
+
+            vm.removeColor = function(index) {
+                vm.colors.splice(index, 1);
+            };
         });
 
 }());
