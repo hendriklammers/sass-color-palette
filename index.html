@@ -7,17 +7,21 @@
     <meta name="description" content="Create a set of Sass color variables from an image.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css">
     <style>
         .color-preview {
             display: inline-block;
             width: 30px;
             height: 30px;
             vertical-align: middle;
+            border-radius: 3px;
         }
 
         .color-list li {
             margin: 0 -15px 2px -15px;
-            padding: 5px 0 5px 15px;
+            padding: 5px 0 5px 5px;
             background: #f5f5f5;
         }
     </style>
@@ -26,7 +30,7 @@
     <nav class="navbar navbar-inverse navbar-static-top">
         <a class="navbar-brand" href="/">Sass color palette</a>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         <div class="col-md-8">
             image wil come here
         </div>
@@ -40,14 +44,17 @@
                     	<label>Variable prefix:</label>
                     	<input type="text" name="colorPrefix" ng-model="colorList.prefix">
                     </div>
-            		<ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable>
+            		<ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
             			<li ng-repeat="color in colorList.colors">
+                            <span class="handle">
+                            	<i class="fa fa-bars"></i>
+                            </span>
                             <div class="color-preview" style="background-color: {{color.hex}}"></div>
-                            <span>{{colorList.prefix}}</span>
                             <input name="colorName" ng-model="color.name" type="text">
-                            <button class="btn btn-default btn-small" ng-click="colorList.removeColor($index)">Delete</button>
+                            <button class="btn btn-default btn-small pull-right" ng-click="colorList.removeColor($index)"><i class="fa fa-trash-o"></i></button>
             			</li>
             		</ul>
+            		<button class="btn btn-primary" ng-click="colorList.createSass()">Export</button>
             	</div>
             </section>
         </div>
@@ -57,6 +64,7 @@
     <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.min.js"></script>
+    <script src="bower_components/ngDialog/js/ngDialog.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
