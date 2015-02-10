@@ -10,11 +10,6 @@
         var vm = this;
 
         vm.prefix = 'color-';
-
-        vm.sortableOptions = {
-            handle: '.handle'
-        };
-
         vm.colors = [
             {hex: '#3498db', name: 'blue'},
             {hex: '#16a085', name: 'green'},
@@ -22,19 +17,31 @@
             {hex: '#f1c40f', name: 'yellow'},
             {hex: '#8e44ad', name: 'purple'}
         ];
+        vm.removeColor = removeColor;
+        vm.createOutput = createOutput;
 
-        vm.removeColor = function(index) {
-            vm.colors.splice(index, 1);
+        vm.sortableOptions = {
+            handle: '.handle'
         };
 
-        vm.createSass = function() {
+        /**
+         * removes color at index
+         * @param {number} index
+         */
+        function removeColor(index) {
+            vm.colors.splice(index, 1);
+        }
+
+        /**
+         * Creates sass variables and shows output in dialog
+         */
+        function createOutput() {
             sassService.createSass(vm.colors, vm.prefix);
 
             ngDialog.open({
-                template: 'src/resultdialog.html',
-                controller: 'ResultDialogController'
+                template: 'src/templates/resultdialog.html'
             });
-        };
+        }
     }
 
 }());
