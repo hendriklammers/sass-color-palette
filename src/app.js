@@ -122,7 +122,7 @@
                 sassService.createSass(vm.colors, vm.prefix);
 
                 ngDialog.open({
-                    template: 'js/resultdialog.html',
+                    template: 'src/resultdialog.html',
                     controller: 'ResultDialogController'
                 });
             };
