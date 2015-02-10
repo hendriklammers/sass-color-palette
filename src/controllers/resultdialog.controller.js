@@ -9,7 +9,7 @@
     function ResultDialogController($scope, sassService) {
         var vm = this;
 
-        $scope.result = sassService.getSass();
+        vm.output = sassService.getSass();
     }
 
 }());
