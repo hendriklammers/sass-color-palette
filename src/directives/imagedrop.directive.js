@@ -16,7 +16,7 @@
 
         return directive;
 
-        function link(scope, elem, attr) {
+        function link(scope, elem) {
             var colorThief = new ColorThief();
 
             // Disable default drag/drop browser behaviour
