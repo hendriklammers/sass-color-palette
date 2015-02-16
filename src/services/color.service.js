@@ -34,7 +34,7 @@
                 colorStorage.push(color);
             });
 
-            $rootScope.$broadcast(events.COLORS_UPDATED);
+            $rootScope.$emit(events.COLORS_UPDATED);
         }
 
         /**
