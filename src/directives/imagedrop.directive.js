@@ -1,14 +1,15 @@
-(function() {
+(function(ColorThief) {
     'use strict';
 
     angular
         .module('sassColorPalette')
         .directive('imageDrop', imageDrop);
 
-    function imageDrop() {
+    /* @ngInject */
+    function imageDrop(colorService) {
         var directive = {
             restrict: 'EA',
-            template: '<div class="dropzone"><span class="dropzone-label">Drag an image in this area</div>',
+            template: '<div class="imagedrop"><span class="imagedrop-label">Drag an image in this area</div>',
             replace: true,
             link: link
         };
@@ -16,6 +17,9 @@
         return directive;
 
         function link(scope, elem, attr) {
+            var colorThief = new ColorThief();
+
+            // Disable default drag/drop browser behaviour
             window.addEventListener('dragover', function(e){
                 e = e || event;
                 e.preventDefault();
@@ -25,46 +29,49 @@
                 e.preventDefault();
             }, false);
 
-            elem[0].addEventListener('drop', dropHandler);
+            // Listen for drop event on directive element
+            elem[0].addEventListener('drop', handleFileDrop);
 
-            function dropHandler(event) {
+            /**
+             * Gets triggerd when user drops file in dropzone
+             * @param event
+             */
+            function handleFileDrop(event) {
                 event.preventDefault();
 
                 for (var i = 0; i < event.dataTransfer.files.length; i++) {
-                    console.log(i);
-                }
+                    var file = event.dataTransfer.files[i];
 
-                // var $draggedImages = $('#dragged-images');
-                // var imageType      = /image.*/;
-                // var fileCount      = files.length;
-                //
-                // for (var i = 0; i < fileCount; i++) {
-                //     var file = files[i];
-                //
-                //     if (file.type.match(imageType)) {
-                //         var reader = new FileReader();
-                //         reader.onload = function(event) {
-                //             imageInfo = { images: [
-                //                 {'class': 'dropped-image', file: event.target.result}
-                //             ]};
-                //
-                //             var imageSectionHTML = Mustache.to_html($('#image-section-template').html(), imageInfo);
-                //             $draggedImages.prepend(imageSectionHTML);
-                //
-                //             var $imageSection = $draggedImages.find('.image-section').first();
-                //             var $image        = $('.dropped-image .target-image');
-                //
-                //             // Must wait for image to load in DOM, not just load from FileReader
-                //             $image.on('load', function() {
-                //                 showColorsForImage($image, $imageSection);
-                //             });
-                //         };
-                //         reader.readAsDataURL(file);
-                //     } else {
-                //         alert('File must be a supported image type.');
-                //     }
-                // }
+                    // Check if dropped file is an image
+                    if (file.type.match(/image.*/)) {
+                        var reader = new FileReader();
+
+                        reader.onload = handleFileLoad;
+
+                        reader.readAsDataURL(file);
+                    } else {
+                        window.alert('Filetype not supported.');
+                    }
+                }
+            }
+
+            /**
+            * Gets triggered when file is loaded
+            * Creates new image object and calls colorThief
+            * @param event
+            */
+            function handleFileLoad(event) {
+                var img = new Image();
+
+                // Wait before the actual image is loaded
+                img.onload = function() {
+                    var colors = colorThief.getPalette(img, 100);
+
+                    colorService.updateColors(colors);
+                };
+
+                img.src = event.target.result;
             }
         }
     }
-}());
+}(ColorThief));
