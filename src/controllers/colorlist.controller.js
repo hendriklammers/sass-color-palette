@@ -6,23 +6,24 @@
         .controller('ColorListController', ColorListController);
 
     /* @ngInject */
-    function ColorListController(ngDialog, sassService) {
+    function ColorListController(ngDialog, sassService, colorService, $rootScope, events) {
         var vm = this;
 
         vm.prefix = 'color-';
-        vm.colors = [
-            {hex: '#3498db', name: 'blue'},
-            {hex: '#16a085', name: 'green'},
-            {hex: '#c0392b', name: 'red'},
-            {hex: '#f1c40f', name: 'yellow'},
-            {hex: '#8e44ad', name: 'purple'}
-        ];
+        vm.colors = [];
         vm.removeColor = removeColor;
         vm.createOutput = createOutput;
 
         vm.sortableOptions = {
             handle: '.handle'
         };
+
+        $rootScope.$on(events.COLORS_UPDATED, handleColorsUpdate);
+
+        function handleColorsUpdate() {
+            var c = colorService.getColors();
+            console.log(c);
+        }
 
         /**
          * removes color at index

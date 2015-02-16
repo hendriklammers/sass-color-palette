@@ -6,14 +6,19 @@
         .factory('colorService', colorService);
 
     /* @ngInject */
-    function colorService() {
+    function colorService($rootScope, events) {
         var colorStorage = [];
 
         var service = {
-            updateColors: updateColors
+            updateColors: updateColors,
+            getColors: getColors
         };
 
         return service;
+
+        function getColors() {
+            return colorStorage;
+        }
 
         /**
          * Update colors stored in the service
@@ -28,6 +33,8 @@
 
                 colorStorage.push(color);
             });
+
+            $rootScope.$broadcast(events.COLORS_UPDATED);
         }
 
         /**
