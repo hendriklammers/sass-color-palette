@@ -6,7 +6,7 @@
         .controller('ColorListController', ColorListController);
 
     /* @ngInject */
-    function ColorListController(ngDialog, sassService, colorService, $rootScope, events) {
+    function ColorListController($scope, ngDialog, sassService, colorService, $rootScope, events) {
         var vm = this;
 
         vm.prefix = 'color-';
@@ -18,11 +18,17 @@
             handle: '.handle'
         };
 
+        // Listen colorsUpdated event dispatched by colorService
         $rootScope.$on(events.COLORS_UPDATED, handleColorsUpdate);
 
+        /**
+         * get colors from service on colorsUpdate event
+         */
         function handleColorsUpdate() {
-            var c = colorService.getColors();
-            console.log(c);
+            vm.colors = colorService.getColors();
+
+            // Make sure view gets updated
+            $scope.$apply();
         }
 
         /**
