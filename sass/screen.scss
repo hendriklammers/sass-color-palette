@@ -1,3 +1,11 @@
+// Center element
+@mixin center() {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
 .color-preview {
     display: inline-block;
     width: 30px;
@@ -12,7 +20,56 @@
     background: #f5f5f5;
 }
 
+// imagedrop directive
 .imagedrop {
+    transition: all 0.2s ease-out;
+    position: relative;
     height: 400px;
-    border: 2px dotted black;
+    border: 2px dashed #ccc;
+
+    .imagedrop-label-drag {
+        @include center();
+    }
+
+    .imagedrop-label-drop {
+        @include center();
+        display: none;
+    }
+
+    &.dragging {
+        background: #f5f5f5;
+
+        .imagedrop-label-drop {
+            display: block;
+        }
+
+        .imagedrop-label-drag {
+            display: none;
+        }
+    }
+
+    .imagedrop-loader {
+        @include center();
+
+        &::after {
+            content: '';
+            display: block;
+            margin-top: -16px;
+            margin-left: -16px;
+            height: 32px;
+            width:  32px;
+            border-width: 4px;
+            border-style: solid;
+            border-radius: 100%;
+            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.4);
+            animation: clockwise 0.6s linear infinite;
+        }
+    }
+}
+
+// Loading animation
+@keyframes clockwise {
+    to {
+        transform: rotate(360deg) translateZ(0);
+    }
 }
