@@ -48,6 +48,15 @@
         }
     }
 
+    &.contains-image {
+        height: auto;
+
+        .imagedrop-label-drag,
+        .imagedrop-label-drop {
+            display: none;
+        }
+    }
+
     .imagedrop-loader {
         @include center();
 
@@ -63,6 +72,18 @@
             border-radius: 100%;
             border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.4);
             animation: clockwise 0.6s linear infinite;
+        }
+    }
+
+    // Dropped image
+    .imagedrop-image {
+        width: 100%;
+        height: auto;
+        opacity: 1;
+        transition: opacity 1s ease-out;
+
+        &.loading {
+            opacity: 0;
         }
     }
 }

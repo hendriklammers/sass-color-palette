@@ -38,6 +38,8 @@
             function handleFileDrop(event) {
                 event.preventDefault();
 
+                elem[0].classList.remove('dragging');
+
                 scope.isBusy = true;
 
                 for (var i = 0; i < event.dataTransfer.files.length; i++) {
@@ -80,6 +82,18 @@
             function handleFileLoad(event) {
                 var img = new Image();
 
+                img.src = event.target.result;
+
+                // Add image to dom
+                var imgElem = document.createElement('img');
+                imgElem.setAttribute('src', img.src);
+                imgElem.setAttribute('alt', 'imagedrop image');
+                imgElem.classList.add('imagedrop-image');
+                imgElem.classList.add('loading');
+                elem[0].appendChild(imgElem);
+
+                elem[0].classList.add('contains-image');
+
                 // Wait before the actual image is loaded
                 img.onload = function() {
                     var colors = colorThief.getPalette(img, 100);
@@ -88,9 +102,9 @@
 
                     scope.isBusy = false;
                     scope.$apply();
-                };
 
-                img.src = event.target.result;
+                    imgElem.classList.remove('loading');
+                };
             }
 
             /**
