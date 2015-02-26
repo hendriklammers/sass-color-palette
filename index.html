@@ -17,7 +17,7 @@
         <a class="navbar-brand" href="/">Sass color palette</a>
     </nav>
     <div class="container">
-        <div class="col-md-6">
+        <div class="col-lg-7 col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>Image upload</h3>
@@ -27,27 +27,31 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-5 col-md-6">
             <section class="panel panel-default" ng-controller="ColorListController as colorList">
                 <header class="panel-heading">
                 	<h3>Sass variables</h3>
                 </header>
-            	<div class="panel-body">
+                <div class="panel-settings">
                     <div class="form-group">
-                    	<label>Variable prefix:</label>
-                    	<input type="text" name="colorPrefix" ng-model="colorList.prefix">
+                        <label for="color-prefix">Prefix</label>
+                        <input type="text" id="color-prefix" class="input-prefix" name="colorPrefix" ng-model="colorList.prefix">
                     </div>
+                    <div class="form-group">
+                        <label for="color-limit">Limit</label>
+                        <input type="text" id="color-limit" class="input-limit" name="colorLimit" ng-model="colorList.limit">
+                    </div>
+                </div>
+            	<div class="panel-body sass-panel">
             		<ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
             			<li ng-repeat="color in colorList.colors">
-                            <span class="handle">
-                            	<i class="fa fa-bars"></i>
-                            </span>
+                            <div class="handle"></div>
                             <div class="color-preview" style="background-color: {{color.hex}}"></div>
-                            <input name="colorName" ng-model="color.name" type="text">
-                            <button class="btn btn-default btn-small pull-right" ng-click="colorList.removeColor($index)"><i class="fa fa-trash-o"></i></button>
+                            <input name="colorName" class="color-name-input" ng-model="color.name" type="text">
+                            <a class="remove-button" href="#" ng-click="colorList.removeColor($index)"><i class="fa fa-remove"></i></a>
             			</li>
             		</ul>
-            		<button class="btn btn-primary" ng-click="colorList.createOutput()">Export</button>
+            		<button class="btn btn-primary btn-lg" ng-click="colorList.createOutput()">Export</button>
             	</div>
             </section>
         </div>
