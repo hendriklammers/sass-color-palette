@@ -1,3 +1,18 @@
+// clearfix
+@mixin clearfix {
+    *zoom: 1 !important;
+
+    &:before,
+    &:after {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
 // Center element
 @mixin center() {
     transform: translate(-50%, -50%);
@@ -6,18 +21,114 @@
     left: 50%;
 }
 
-.color-preview {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    border-radius: 3px;
+.panel-heading {
+    h3 {
+        margin: 5px 0 5px;
+    }
 }
 
-.color-list li {
-    margin: 0 -15px 2px -15px;
-    padding: 5px 0 5px 5px;
-    background: #f5f5f5;
+.sass-panel {
+    padding-top: 0;
+}
+
+.color-list {
+    li {
+        transition: box-shadow 0.1s ease-out;
+        display: flex;
+        flex-direction: row;
+        margin: 0 -15px;
+        padding: 0;
+        background: linear-gradient(#f5f5f5, #eee);
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #ddd;
+
+        &.ui-sortable-helper {
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .color-preview {
+        flex: none;
+        margin: 3px 6px 3px 0;
+        width: 22px;
+        height: 22px;
+        vertical-align: middle;
+        border-radius: 3px;
+    }
+
+    .color-name-input {
+        flex: 1;
+        margin: 2px 6px 2px 0;
+        height: 24px;
+    }
+
+    .handle {
+        position: relative;
+        margin-right: 6px;
+        flex: none;
+        width: 30px;
+        height: 30px;
+        border-right: 1px dashed #ddd;
+        cursor: move;
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            display: block;
+            width: 10px;
+            height: 2px;
+            background: #ccc;
+        }
+
+        &::before {
+            top: 12px;
+        }
+
+        &::after {
+            top: 16px;
+        }
+    }
+
+    .remove-button {
+        flex:none;
+        width: 30px;
+        height: 30px;
+        border-left: 1px dashed #ddd;
+        text-align: center;
+
+        .fa {
+            position: relative;
+            margin-top: 7px;
+            color: #ccc;
+        }
+
+        &:hover {
+            .fa {
+                color: #333;
+            }
+        }
+    }
+}
+
+.panel-settings {
+    @include clearfix();
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+
+    .form-group {
+        float: left;
+        margin: 0 20px 0 0;
+    }
+
+    .input-limit {
+        width: 40px;
+    }
+
+    .input-prefix {
+        width: 100px;
+    }
 }
 
 // imagedrop directive
