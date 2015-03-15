@@ -1,0 +1,29 @@
+<section class="panel panel-default" ng-controller="ColorListController as colorList">
+    <header class="panel-heading">
+        <h3>Sass variables</h3>
+    </header>
+    <form class="form-inline" name="colorForm" ng-submit="colorList.createOutput()" novalidate>
+        <div class="panel-settings">
+            <div class="form-group" ng-class="{'has-error': colorForm.colorPrefix.$invalid}">
+                <label for="color-prefix">Prefix</label>
+                <input type="text" id="color-prefix" class="input-prefix form-control" name="colorPrefix" ng-model="colorList.prefix" ng-pattern="colorList.pattern">
+            </div>
+            <div class="form-group">
+                <label for="color-limit">Limit</label>
+                <input type="number" id="color-limit" class="input-limit form-control" name="colorLimit" ng-model="colorList.limit">
+            </div>
+        </div>
+        <div class="panel-body sass-panel">
+            <ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
+                <li ng-repeat="color in colorList.colors | limitTo: colorList.limit">
+                    <div class="handle"></div>
+                    <div class="color-preview" style="background-color: {{color.hex}}"></div>
+                    <input name="colorName" class="color-name-input form-control" ng-model="color.name" type="text" ng-pattern="colorList.pattern" required>
+                    <a class="remove-button" href="#" ng-click="colorList.removeColor($index)"><i class="fa fa-remove"></i></a>
+                </li>
+            </ul>
+            <!-- <button class="btn btn&#45;primary" ng&#45;if="colorList.colors.length > 0">Export</button> -->
+            <button type="submit" class="btn btn-primary">Export</button>
+        </div>
+    </form>
+</section>

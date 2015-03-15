@@ -9,7 +9,9 @@
     function ColorListController($scope, ngDialog, sassService, colorService, $rootScope, events) {
         var vm = this;
 
+        vm.pattern = /^[A-Za-z0-9\-\_]+$/;
         vm.prefix = 'color-';
+        vm.limit = 10;
         vm.colors = [];
         vm.removeColor = removeColor;
         vm.createOutput = createOutput;
@@ -43,11 +45,14 @@
          * Creates sass variables and shows output in dialog
          */
         function createOutput() {
-            sassService.createSass(vm.colors, vm.prefix);
+            // First check if form input is valid
+            if ($scope.colorForm.$valid) {
+                sassService.createSass(vm.colors, vm.prefix);
 
-            ngDialog.open({
-                template: 'src/templates/resultdialog.html'
-            });
+                ngDialog.open({
+                    template: 'src/templates/resultdialog.html'
+                });
+            }
         }
     }
 

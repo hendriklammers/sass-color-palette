@@ -28,32 +28,7 @@
             </div>
         </div>
         <div class="col-lg-5 col-md-6">
-            <section class="panel panel-default" ng-controller="ColorListController as colorList">
-                <header class="panel-heading">
-                	<h3>Sass variables</h3>
-                </header>
-                <div class="panel-settings">
-                    <div class="form-group">
-                        <label for="color-prefix">Prefix</label>
-                        <input type="text" id="color-prefix" class="input-prefix" name="colorPrefix" ng-model="colorList.prefix">
-                    </div>
-                    <div class="form-group">
-                        <label for="color-limit">Limit</label>
-                        <input type="text" id="color-limit" class="input-limit" name="colorLimit" ng-model="colorList.limit">
-                    </div>
-                </div>
-            	<div class="panel-body sass-panel">
-            		<ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
-            			<li ng-repeat="color in colorList.colors">
-                            <div class="handle"></div>
-                            <div class="color-preview" style="background-color: {{color.hex}}"></div>
-                            <input name="colorName" class="color-name-input" ng-model="color.name" type="text">
-                            <a class="remove-button" href="#" ng-click="colorList.removeColor($index)"><i class="fa fa-remove"></i></a>
-            			</li>
-            		</ul>
-            		<button class="btn btn-primary btn-lg" ng-click="colorList.createOutput()">Export</button>
-            	</div>
-            </section>
+            <div ng-include="'src/templates/colors.html'"></div>
         </div>
     </div>
 
