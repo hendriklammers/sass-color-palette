@@ -60,6 +60,10 @@
         flex: 1;
         margin: 2px 6px 2px 0;
         height: 24px;
+
+        .show-errors &.ng-invalid {
+            border: 1px solid #a94442;
+        }
     }
 
     .handle {
@@ -132,6 +136,10 @@
         padding: 2px 5px;
         width: 100px;
         height: 24px;
+
+        .show-errors &.ng-invalid {
+            border: 1px solid #a94442;
+        }
     }
 }
 
@@ -165,6 +173,7 @@
 
     &.contains-image {
         height: auto;
+        border: none;
 
         .imagedrop-label-drag,
         .imagedrop-label-drop {

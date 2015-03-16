@@ -13,8 +13,10 @@
         vm.prefix = 'color-';
         vm.limit = 10;
         vm.colors = [];
+        vm.showErrors = false;
         vm.removeColor = removeColor;
-        vm.createOutput = createOutput;
+        vm.submitColorForm = submitColorForm;
+        // vm.createOutput = createOutput;
 
         vm.sortableOptions = {
             handle: '.handle'
@@ -27,7 +29,7 @@
          * get colors from service on colorsUpdate event
          */
         function handleColorsUpdate() {
-            vm.colors = colorService.getColors();
+            vm.colors = colorService.getColors().splice(0, vm.limit);
 
             // Make sure view gets updated
             $scope.$apply();
@@ -42,17 +44,25 @@
         }
 
         /**
+         * Validates form and proceed to create sass output
+         */
+        function submitColorForm() {
+            if ($scope.colorForm.$invalid) {
+                vm.showErrors = true;
+            } else {
+                createOutput();
+            }
+        }
+
+        /**
          * Creates sass variables and shows output in dialog
          */
         function createOutput() {
-            // First check if form input is valid
-            if ($scope.colorForm.$valid) {
-                sassService.createSass(vm.colors, vm.prefix);
+            sassService.createSass(vm.colors, vm.prefix);
 
-                ngDialog.open({
-                    template: 'src/templates/resultdialog.html'
-                });
-            }
+            ngDialog.open({
+                template: 'src/templates/resultdialog.html'
+            });
         }
     }
 
