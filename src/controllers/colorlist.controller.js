@@ -12,7 +12,10 @@
         vm.pattern = /^[A-Za-z0-9\-\_]+$/;
         vm.prefix = 'color-';
         vm.limit = 10;
-        vm.colors = [];
+        vm.autofill = true;
+        vm.colors = [
+            {hex: '#48251e', rgb: 'rgb(72, 37, 30)'}
+        ];
         vm.showErrors = false;
         vm.removeColor = removeColor;
         vm.submitColorForm = submitColorForm;
@@ -30,6 +33,7 @@
          */
         function handleColorsUpdate() {
             vm.colors = colorService.getColors().splice(0, vm.limit);
+            console.log(vm.colors);
 
             // Make sure view gets updated
             $scope.$apply();

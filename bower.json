@@ -9,5 +9,8 @@
     "color-thief": "*",
     "fontawesome": "~4.3.0",
     "ngDialog": "~0.3.9"
+  },
+  "dependencies": {
+    "ntc.js": "~1.0.0"
   }
 }

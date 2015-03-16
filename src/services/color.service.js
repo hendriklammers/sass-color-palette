@@ -1,4 +1,4 @@
-(function() {
+(function(ntc) {
     'use strict';
 
     angular
@@ -16,6 +16,10 @@
 
         return service;
 
+        /**
+         * Returns stored colors
+         * @return {array}
+         */
         function getColors() {
             return colorStorage;
         }
@@ -30,6 +34,10 @@
                     rgb: createRgbString(c),
                     hex: createHexString(c)
                 };
+
+                // Get color name
+                var name = ntc.name(color.hex)[1];
+                color.name = name.replace(/\s+/g, '-').toLowerCase();
 
                 colorStorage.push(color);
             });
@@ -56,4 +64,4 @@
         }
     }
 
-}());
+}(window.ntc));
