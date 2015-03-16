@@ -12,6 +12,11 @@
                 <label for="color-limit">Limit</label>
                 <input type="number" id="color-limit" class="input-limit form-control" name="colorLimit" ng-model="colorList.limit">
             </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="color-autofill" class="" name="colorAutofill" ng-model="colorList.autofill"> Autofill
+                </label>
+            </div>
         </div>
         <div class="panel-body sass-panel">
             <ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
