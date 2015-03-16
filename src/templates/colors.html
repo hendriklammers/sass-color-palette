@@ -2,7 +2,7 @@
     <header class="panel-heading">
         <h3>Sass variables</h3>
     </header>
-    <form class="form-inline" name="colorForm" ng-submit="colorList.createOutput()" novalidate>
+    <form class="form-inline" ng-class="{'show-errors': colorList.showErrors}" name="colorForm" ng-submit="colorList.submitColorForm()" novalidate>
         <div class="panel-settings">
             <div class="form-group" ng-class="{'has-error': colorForm.colorPrefix.$invalid}">
                 <label for="color-prefix">Prefix</label>
@@ -22,8 +22,7 @@
                     <a class="remove-button" href="#" ng-click="colorList.removeColor($index)"><i class="fa fa-remove"></i></a>
                 </li>
             </ul>
-            <!-- <button class="btn btn&#45;primary" ng&#45;if="colorList.colors.length > 0">Export</button> -->
-            <button type="submit" class="btn btn-primary">Export</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="colorList.colors.length < 1">Export</button>
         </div>
     </form>
 </section>
