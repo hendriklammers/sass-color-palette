@@ -11,6 +11,7 @@
 
         vm.pattern = /^[A-Za-z0-9\-\_]+$/;
         vm.prefix = 'color-';
+        vm.type = '$';
         vm.limit = 10;
         vm.autofill = true;
         vm.colors = [
@@ -62,7 +63,7 @@
          * Creates sass variables and shows output in dialog
          */
         function createOutput() {
-            sassService.createSass(vm.colors, vm.prefix);
+            sassService.createSass(vm.colors, vm.type + vm.prefix);
 
             ngDialog.open({
                 template: 'src/templates/resultdialog.html'

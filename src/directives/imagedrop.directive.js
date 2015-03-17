@@ -7,6 +7,7 @@
 
     /* @ngInject */
     function imageDrop(colorService) {
+        var colorAmount = 10;
         var directive = {
             restrict: 'EA',
             templateUrl: 'src/templates/imagedrop.html',
@@ -96,7 +97,7 @@
 
                 // Wait before the actual image is loaded
                 img.onload = function() {
-                    var colors = colorThief.getPalette(img, 100);
+                    var colors = colorThief.getPalette(img, colorAmount);
 
                     colorService.updateColors(colors);
 
