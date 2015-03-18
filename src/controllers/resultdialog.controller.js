@@ -10,6 +10,11 @@
         var vm = this;
 
         vm.output = sassService.getSass();
+
+        // Select contents of textarea
+        vm.selectText = function($event) {
+            $event.target.select();
+        };
     }
 
 }());

@@ -15,7 +15,8 @@
         vm.limit = 10;
         vm.autofill = true;
         vm.colors = [
-            {hex: '#48251e', rgb: 'rgb(72, 37, 30)'}
+            {hex: '#48251e', rgb: 'rgb(72, 37, 30)'},
+            {hex: '#ff0000', rgb: 'rgb(255, 255, 255, 0)'}
         ];
         vm.showErrors = false;
         vm.removeColor = removeColor;
