@@ -7,9 +7,11 @@
 
     /* @ngInject */
     function imageDrop(colorService) {
-        var colorAmount = 10;
         var directive = {
             restrict: 'EA',
+            scope: {
+                colorAmount: '='
+            },
             templateUrl: 'src/templates/imagedrop.html',
             replace: true,
             link: link
@@ -31,6 +33,8 @@
             elem[0].addEventListener('drop', handleFileDrop);
             elem[0].addEventListener('dragenter', handleDragEnter);
             elem[0].addEventListener('dragleave', handleDragLeave);
+
+            scope.colorAmount = 10;
 
             /**
              * Gets triggerd when user drops file in dropzone
@@ -97,7 +101,7 @@
 
                 // Wait before the actual image is loaded
                 img.onload = function() {
-                    var colors = colorThief.getPalette(img, colorAmount);
+                    var colors = colorThief.getPalette(img, scope.colorAmount);
 
                     colorService.updateColors(colors);
 

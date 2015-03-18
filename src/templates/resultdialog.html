@@ -1,3 +1,3 @@
 <div class="result-container" ng-controller="ResultDialogController as result">
-    <textarea class="form-control" rows="10">{{result.output}}</textarea>
+    <textarea class="form-control" rows="10" ng-click="result.selectText($event)">{{result.output}}</textarea>
 </div>
