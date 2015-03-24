@@ -226,3 +226,8 @@
         transform: rotate(360deg) translateZ(0);
     }
 }
+
+// Dialog
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+    padding-top: 30px;
+}
