@@ -21,7 +21,6 @@
         vm.showErrors = false;
         vm.removeColor = removeColor;
         vm.submitColorForm = submitColorForm;
-        // vm.createOutput = createOutput;
 
         vm.sortableOptions = {
             handle: '.handle'
@@ -35,7 +34,6 @@
          */
         function handleColorsUpdate() {
             vm.colors = colorService.getColors().splice(0, vm.limit);
-            console.log(vm.colors);
 
             // Make sure view gets updated
             $scope.$apply();
