@@ -27,7 +27,7 @@
         };
 
         // Listen colorsUpdated event dispatched by colorService
-        $rootScope.$on(events.COLORS_UPDATED, handleColorsUpdate);
+        $rootScope.$on(events.COLORS_UPDATE, handleColorsUpdate);
 
         /**
          * get colors from service on colorsUpdate event

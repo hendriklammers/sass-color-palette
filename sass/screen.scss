@@ -21,6 +21,39 @@
     left: 50%;
 }
 
+.navbar {
+    margin-bottom: 0;
+}
+
+.settings {
+    @include clearfix();
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    // background-image: linear-gradient(-180deg, #ccc 0%, #ddd 100%);
+    background: #ddd;
+
+    .form-group {
+        float: left;
+        margin: 0 20px 0 0;
+    }
+
+    .input-amount {
+        padding: 2px 0 2px 5px;
+        width: 50px;
+        height: 24px;
+    }
+
+    .input-prefix {
+        padding: 2px 5px;
+        width: 100px;
+        height: 24px;
+
+        .show-errors &.ng-invalid {
+            border: 1px solid #a94442;
+        }
+    }
+}
+
 .panel-heading {
     h3 {
         margin: 5px 0 5px;
@@ -120,33 +153,6 @@
             .fa {
                 color: #333;
             }
-        }
-    }
-}
-
-.panel-settings {
-    @include clearfix();
-    padding: 10px 15px;
-    border-bottom: 1px solid #ddd;
-
-    .form-group {
-        float: left;
-        margin: 0 20px 0 0;
-    }
-
-    .input-amount {
-        padding: 2px 0 2px 5px;
-        width: 50px;
-        height: 24px;
-    }
-
-    .input-prefix {
-        padding: 2px 5px;
-        width: 100px;
-        height: 24px;
-
-        .show-errors &.ng-invalid {
-            border: 1px solid #a94442;
         }
     }
 }
