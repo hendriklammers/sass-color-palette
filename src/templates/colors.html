@@ -1,26 +1,8 @@
 <section class="panel panel-default" ng-controller="ColorListController as colorList">
     <header class="panel-heading">
-        <h3>Sass variables</h3>
+        <h3>Colors</h3>
     </header>
     <form class="form-inline" ng-class="{'show-errors': colorList.showErrors}" name="colorForm" ng-submit="colorList.submitColorForm()" ng-init="colorList.type='$'" novalidate>
-        <div class="panel-settings">
-            <div class="form-group" ng-class="{'has-error': colorForm.colorPrefix.$invalid}">
-                <label for="color-prefix">Prefix</label>
-                <input type="text" id="color-prefix" class="input-prefix form-control" name="colorPrefix" ng-model="colorList.prefix" ng-pattern="colorList.pattern">
-            </div>
-            <div class="radio">
-                <label>
-                    <input type="radio" ng-model="colorList.type" name="variable-type" id="type-sass" value="$" checked>
-                    Sass
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input type="radio" ng-model="colorList.type" name="variable-type" id="type-less" value="@">
-                    Less
-                </label>
-            </div>
-        </div>
         <div class="panel-body sass-panel">
             <ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
                 <li ng-repeat="color in colorList.colors">
@@ -31,7 +13,7 @@
                     <a class="remove-button" href="#" ng-click="colorList.removeColor($index)"><i class="fa fa-remove"></i></a>
                 </li>
             </ul>
-            <button type="submit" class="btn btn-primary" ng-disabled="colorList.colors.length < 1">Export</button>
+            <button type="submit" class="btn btn-primary btn-block" ng-disabled="colorList.colors.length < 1">Export variables</button>
         </div>
     </form>
 </section>

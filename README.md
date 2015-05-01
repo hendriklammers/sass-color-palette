@@ -2,6 +2,7 @@
 Create a set of Sass color variables from an image.
 
 ### TODO
+* Create template for all settings
 * Form validation (Check for forbidden characters & double variabale names)
 * Option for Less variables
 * Autofill color names [Link](http://gauth.fr/2011/09/get-a-color-name-from-any-rgb-combination/)

@@ -16,24 +16,40 @@
     <nav class="navbar navbar-inverse navbar-static-top">
         <a class="navbar-brand" href="/">Sass color palette</a>
     </nav>
+    <div class="settings">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="color-amount">Color Amount</label>
+                <input type="number" id="color-amount" class="input-amount form-control" name="colorAmount" ng-model="amount" ng-value="10">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="color-autofill" class="" name="colorAutofill" ng-model="autofill"> Autofill names
+                </label>
+            </div>
+            <div class="form-group" ng-class="{'has-error': colorForm.colorPrefix.$invalid}">
+                <label for="color-prefix">Prefix</label>
+                <input type="text" id="color-prefix" class="input-prefix form-control" name="colorPrefix" ng-model="colorList.prefix" ng-pattern="colorList.pattern">
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="colorList.type" name="variable-type" id="type-sass" value="$" checked>
+                    Sass
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="colorList.type" name="variable-type" id="type-less" value="@">
+                    Less
+                </label>
+            </div>
+        </form>
+    </div>
     <div class="container">
         <div class="col-lg-7 col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>Image upload</h3>
-                </div>
-                <div class="panel-settings">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="color-amount">Color Amount</label>
-                            <input type="number" id="color-amount" class="input-amount form-control" name="colorAmount" ng-model="amount" ng-value="10">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="color-autofill" class="" name="colorAutofill" ng-model="autofill"> Autofill names
-                            </label>
-                        </div>
-                    </form>
                 </div>
                 <div class="panel-body">
                     <div color-amount="amount" image-drop></div>
