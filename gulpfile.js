@@ -54,7 +54,9 @@ gulp.task('scripts', 'Check with jshint, concat and uglify the javascript', func
 
 gulp.task('vendor', 'Concatenates all vendor scripts', function() {
     return gulp.src(path.vendor)
+        .pipe(plugins.sourcemaps.init())
         .pipe(plugins.concat('vendor.js'))
+        .pipe(plugins.sourcemaps.write('./'))
         .pipe(gulp.dest(path.dist));
 });
 
