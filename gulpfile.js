@@ -10,7 +10,17 @@ var isProduction = process.env.NODE_ENV === 'production';
 var path = {
         html: ['*.html', 'src/**/*.html'],
         scripts: 'src/**/*.js',
-        styles: 'sass/**/*.scss'
+        styles: 'sass/**/*.scss',
+        vendor: [
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/jquery-ui/jquery-ui.min.js',
+            'bower_components/color-thief/dist/color-thief.min.js',
+            'bower_components/angular/angular.min.js',
+            'bower_components/angular-ui-sortable/sortable.min.js',
+            'bower_components/ngDialog/js/ngDialog.min.js',
+            'bower_components/ntc.js/ntc.js'
+        ],
+        dist: 'dist'
     };
 
 gulp.task('browser-sync', function() {
@@ -39,7 +49,13 @@ gulp.task('scripts', 'Check with jshint, concat and uglify the javascript', func
         .pipe(plugins.ngAnnotate())
         .pipe(gulpif(isProduction, plugins.uglify()))
         .pipe(plugins.sourcemaps.write('./'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(path.dist));
+});
+
+gulp.task('vendor', 'Concatenates all vendor scripts', function() {
+    return gulp.src(path.vendor)
+        .pipe(plugins.concat('vendor.js'))
+        .pipe(gulp.dest(path.dist));
 });
 
 gulp.task('sass', 'Compile sass to css and run autoprefixer', function() {
@@ -55,9 +71,9 @@ gulp.task('sass', 'Compile sass to css and run autoprefixer', function() {
         .pipe(gulp.dest('css'));
 });
 
-gulp.task('default', 'Runs sass and scripts tasks', ['sass', 'scripts']);
+gulp.task('default', 'Runs sass and scripts tasks', ['sass', 'vendor', 'scripts']);
 
-gulp.task('watch', 'Start browser-sync and refresh browser on file changes', ['sass', 'scripts', 'browser-sync'], function () {
+gulp.task('watch', 'Start browser-sync and refresh browser on file changes', ['default', 'browser-sync'], function () {
     gulp.watch(path.styles, ['sass']);
     gulp.watch(path.scripts, ['scripts']);
 });
