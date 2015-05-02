@@ -34,12 +34,22 @@
 
     .form-group {
         float: left;
-        margin: 0 20px 0 0;
+        margin: 0 24px 0 0;
+    }
+
+    .checkbox {
+        label {
+            font-weight: 700;
+        }
+
+        input[type="checkbox"] {
+            margin-left: 5px;
+        }
     }
 
     .input-amount {
         padding: 2px 0 2px 5px;
-        width: 50px;
+        width: 46px;
         height: 24px;
     }
 
@@ -51,6 +61,10 @@
         .show-errors &.ng-invalid {
             border: 1px solid #a94442;
         }
+    }
+
+    .radio {
+        margin-left: 6px;
     }
 }
 
