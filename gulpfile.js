@@ -27,7 +27,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', 'Check with jshint, concat and uglify the javascript', function() {
     return gulp.src(path.scripts)
         .pipe(plugins.plumber({
             errorHandler: handleError
@@ -42,7 +42,7 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', 'Compile sass to css and run autoprefixer', function() {
     var config = {
         sourcemap: !isProduction,
         style: isProduction ? 'compressed' : 'expanded'
@@ -55,7 +55,7 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('css'));
 });
 
-gulp.task('default', ['sass', 'scripts']);
+gulp.task('default', 'Runs sass and scripts tasks', ['sass', 'scripts']);
 
 gulp.task('watch', 'Start browser-sync and refresh browser on file changes', ['sass', 'scripts', 'browser-sync'], function () {
     gulp.watch(path.styles, ['sass']);
