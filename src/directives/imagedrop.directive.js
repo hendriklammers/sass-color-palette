@@ -9,9 +9,6 @@
     function imageDrop(colorService) {
         var directive = {
             restrict: 'EA',
-            scope: {
-                colorAmount: '='
-            },
             templateUrl: 'src/templates/imagedrop.html',
             replace: true,
             link: link
@@ -25,7 +22,8 @@
          * @param elem
          */
         function link(scope, elem) {
-            var colorThief = new ColorThief();
+            var COLOR_AMOUNT = 99,
+                colorThief = new ColorThief();
 
             disableDefault();
 
@@ -33,8 +31,6 @@
             elem[0].addEventListener('drop', handleFileDrop);
             elem[0].addEventListener('dragenter', handleDragEnter);
             elem[0].addEventListener('dragleave', handleDragLeave);
-
-            scope.colorAmount = 10;
 
             /**
              * Gets triggerd when user drops file in dropzone
@@ -101,7 +97,7 @@
 
                 // Wait before the actual image is loaded
                 img.onload = function() {
-                    var colors = colorThief.getPalette(img, scope.colorAmount);
+                    var colors = colorThief.getPalette(img, COLOR_AMOUNT);
 
                     colorService.updateColors(colors);
 
