@@ -6,7 +6,7 @@
         .factory('sassService', sassService);
 
     /* @ngInject */
-    function sassService() {
+    function sassService(settingsService) {
         var sassVariables = '',
             service = {
                 createSass: createSass,
@@ -21,8 +21,10 @@
          * @param {string} prefix - Every variable name will start with given prefix
          * @return {string}
          */
-        function createSass(colors, prefix) {
-            var result = '';
+        function createSass(colors) {
+            var result = '',
+                settings = settingsService.getSettings(),
+                prefix = settings.type + settings.prefix;
 
             colors.forEach(function(elem) {
                 var color = prefix + elem.name + ': ' + elem.hex + ';\n';
