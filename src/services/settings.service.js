@@ -38,7 +38,7 @@
             angular.extend(settings, newSettings);
 
             // Emit event to let controllers know settings have been updated
-            $rootScope.$emit(events.SETTINGS_CHANGE);
+            $rootScope.$emit(events.SETTINGS_CHANGE, settings);
         }
     }
 
