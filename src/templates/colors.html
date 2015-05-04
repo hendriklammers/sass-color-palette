@@ -2,13 +2,13 @@
     <header class="panel-heading">
         <h3>Colors</h3>
     </header>
-    <form class="form-inline" ng-class="{'show-errors': colorList.showErrors}" name="colorForm" ng-submit="colorList.submitColorForm()" ng-init="colorList.type='$'" novalidate>
+    <form class="form-inline" ng-class="{'show-errors': colorList.showErrors}" name="colorForm" ng-submit="colorList.submitColorForm()" novalidate>
         <div class="panel-body sass-panel">
             <ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
                 <li ng-repeat="color in colorList.colors">
                     <div class="handle"></div>
                     <div class="color-preview" style="background-color: {{color.hex}}"></div>
-                    <span class="color-prefix">{{colorList.type}}{{colorList.prefix}}</span>
+                    <span class="color-prefix">{{colorList.settings.type}}{{colorList.settings.prefix}}</span>
                     <input name="colorName" class="color-name-input form-control" ng-model="color.name" type="text" ng-pattern="colorList.pattern" required>
                     <a class="remove-button" href="#" ng-click="colorList.removeColor($index)"><i class="fa fa-remove"></i></a>
                 </li>

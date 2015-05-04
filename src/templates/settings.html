@@ -1,30 +1,30 @@
-<div class="settings" ng-controller="SettingsController as settings">
+<div class="settings" ng-controller="SettingsController as vm">
     <form class="form-inline">
         <div class="form-group">
             <label for="settings-color-amount">Color Amount</label>
-            <input type="number" id="settings-color-amount" class="input-amount form-control" name="colorAmount" min="1" max="99" ng-model="settings.amount" ng-value="10">
+            <input type="number" id="settings-color-amount" class="input-amount form-control" name="colorAmount" min="1" max="99" ng-model="vm.settings.amount" ng-value="10">
         </div>
         <div class="form-group" ng-class="{'has-error': colorForm.colorPrefix.$invalid}">
             <label for="settings-color-prefix">Prefix</label>
-            <input type="text" id="settings-color-prefix" class="input-prefix form-control" name="colorPrefix" ng-model="settings.prefix" ng-pattern="settings.namePattern">
+            <input type="text" id="settings-color-prefix" class="input-prefix form-control" name="colorPrefix" ng-model="vm.settings.prefix" ng-pattern="vm.settings.namePattern">
         </div>
         <div class="form-group">
             <div class="checkbox">
                 <label for="settings-color-autofill">Autofill names</label>
-                <input type="checkbox" id="settings-color-autofill" name="colorAutofill" ng-model="settings.autofill">
+                <input type="checkbox" id="settings-color-autofill" name="colorAutofill" ng-model="vm.settings.autofill">
             </div>
         </div>
         <div class="form-group">
             <label>Type</label>
             <div class="radio">
                 <label>
-                    <input type="radio" ng-model="settings.type" name="variable-type" id="settings-type-sass" value="$" ng-checked="true">
+                    <input type="radio" ng-model="vm.settings.type" name="variable-type" id="settings-type-sass" value="$" ng-checked="true">
                     Sass
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" ng-model="settings.type" name="variable-type" id="settings-type-less" value="@">
+                    <input type="radio" ng-model="vm.settings.type" name="variable-type" id="settings-type-less" value="@">
                     Less
                 </label>
             </div>

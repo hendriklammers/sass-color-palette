@@ -6,9 +6,14 @@
         .factory('settingsService', settingsService);
 
     /* @ngInject */
-    function settingsService() {
+    function settingsService($rootScope, events) {
         var service = {
-            // Default settings
+            getSettings: getSettings,
+            update: update
+        };
+
+        // Default settings
+        var settings =  {
             prefix: 'color-',
             amount: 10,
             autofill: false,
@@ -16,6 +21,25 @@
         };
 
         return service;
+
+        /**
+         * Gets settings object
+         * @return {Object}
+         */
+        function getSettings() {
+            return settings;
+        }
+
+        /**
+         * Updates settings with new values
+         * @param {Object} newSettings
+         */
+        function update(newSettings) {
+            angular.extend(settings, newSettings);
+
+            // Emit event to let controllers know settings have been updated
+            $rootScope.$emit(events.SETTINGS_CHANGE);
+        }
     }
 
 }());
