@@ -6,11 +6,11 @@
         .controller('ColorListController', ColorListController);
 
     /* @ngInject */
-    function ColorListController($scope, ngDialog, sassService, colorService, $rootScope, events, settingsService) {
+    function ColorListController($scope, ngDialog, sassService, colorService, $rootScope, EVENTS, PATTERN, settingsService) {
         var vm = this;
 
         vm.settings = settingsService.getSettings();
-        vm.pattern = /^[A-Za-z0-9\-\_]+$/;
+        vm.pattern = PATTERN;
         vm.colors = [
             {hex: '#48251e', rgb: 'rgb(72, 37, 30)'},
             {hex: '#ff0000', rgb: 'rgb(255, 255, 255, 0)'}
@@ -24,10 +24,10 @@
         };
 
         // Listen for changes in settings panel
-        $rootScope.$on(events.SETTINGS_CHANGE, handleSettingsUpdate);
+        $rootScope.$on(EVENTS.SETTINGS_CHANGE, handleSettingsUpdate);
 
         // Listen colorsUpdated event dispatched by colorService
-        $rootScope.$on(events.COLORS_UPDATE, handleColorsUpdate);
+        $rootScope.$on(EVENTS.COLORS_UPDATE, handleColorsUpdate);
 
         /**
          * Update settings on scope with settings from service
