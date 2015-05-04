@@ -6,7 +6,7 @@
         .factory('settingsService', settingsService);
 
     /* @ngInject */
-    function settingsService($rootScope, events) {
+    function settingsService($rootScope, EVENTS) {
         var service = {
             getSettings: getSettings,
             update: update
@@ -38,7 +38,7 @@
             angular.extend(settings, newSettings);
 
             // Emit event to let controllers know settings have been updated
-            $rootScope.$emit(events.SETTINGS_CHANGE, settings);
+            $rootScope.$emit(EVENTS.SETTINGS_CHANGE, settings);
         }
     }
 
