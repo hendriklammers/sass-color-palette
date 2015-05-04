@@ -32,8 +32,8 @@
         /**
          * Update settings on scope with settings from service
          */
-        function handleSettingsUpdate() {
-            vm.settings = settingsService.getSettings();
+        function handleSettingsUpdate(event, data) {
+            vm.settings = data;
         }
 
         /**
