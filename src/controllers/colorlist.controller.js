@@ -29,6 +29,9 @@
         // Listen colorsUpdated event dispatched by colorService
         $rootScope.$on(events.COLORS_UPDATE, handleColorsUpdate);
 
+        /**
+         * Update settings on scope with settings from service
+         */
         function handleSettingsUpdate() {
             vm.settings = settingsService.getSettings();
         }
@@ -66,7 +69,7 @@
          * Creates sass variables and shows output in dialog
          */
         function createOutput() {
-            sassService.createSass(vm.colors, vm.type + vm.prefix);
+            sassService.createSass(vm.colors);
 
             ngDialog.open({
                 template: 'src/templates/resultdialog.html'
