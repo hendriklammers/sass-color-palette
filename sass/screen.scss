@@ -29,7 +29,6 @@
     @include clearfix();
     margin-bottom: 20px;
     padding: 10px 15px;
-    // background-image: linear-gradient(-180deg, #ccc 0%, #ddd 100%);
     background: #ddd;
 
     .form-group {
@@ -250,4 +249,8 @@
 // Dialog
 .ngdialog.ngdialog-theme-default .ngdialog-content {
     padding-top: 30px;
+}
+
+.ngdialog-overlay {
+    background: rgba(0, 0, 0, 0.6);
 }
