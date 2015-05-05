@@ -5,7 +5,7 @@
     <form class="form-inline" ng-class="{'show-errors': colorList.showErrors}" name="colorForm" ng-submit="colorList.submitColorForm()" novalidate>
         <div class="panel-body sass-panel">
             <ul class="list-unstyled color-list" ng-model="colorList.colors" ui-sortable="colorList.sortableOptions">
-                <li ng-repeat="color in colorList.colors">
+                <li ng-repeat="color in colorList.colors | limitTo: colorList.settings.amount">
                     <div class="handle"></div>
                     <div class="color-preview" style="background-color: {{color.hex}}"></div>
                     <span class="color-prefix">{{colorList.settings.type}}{{colorList.settings.prefix}}</span>

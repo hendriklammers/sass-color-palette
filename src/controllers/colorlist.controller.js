@@ -40,7 +40,7 @@
          * get colors from service on colorsUpdate event
          */
         function handleColorsUpdate() {
-            vm.colors = colorService.getColors().splice(0, vm.limit);
+            vm.colors = colorService.getColors();
 
             // Make sure view gets updated
             $scope.$apply();

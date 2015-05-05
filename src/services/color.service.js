@@ -42,7 +42,7 @@
                 colorStorage.push(color);
             });
 
-            $rootScope.$emit(EVENTS.COLORS_UPDATE);
+            $rootScope.$emit(EVENTS.COLORS_UPDATE, colorStorage);
         }
 
         /**

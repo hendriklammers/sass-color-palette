@@ -26,11 +26,13 @@
                 settings = settingsService.getSettings(),
                 prefix = settings.type + settings.prefix;
 
-            colors.forEach(function(elem) {
-                var color = prefix + elem.name + ': ' + elem.hex + ';\n';
+            // Create variable list with color amount from the settings
+            for (var i = 0; i < settings.amount; i++) {
+                var color = colors[i],
+                    variable = prefix + color.name + ': ' + color.hex + ';\n';
 
-                result += color;
-            });
+                result += variable;
+            }
 
             // Store result in the service
             sassVariables = result;
