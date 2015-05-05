@@ -22,7 +22,7 @@
          * @param elem
          */
         function link(scope, elem) {
-            var COLOR_AMOUNT = 99,
+            var COLOR_AMOUNT = 100,
                 colorThief = new ColorThief();
 
             disableDefault();
