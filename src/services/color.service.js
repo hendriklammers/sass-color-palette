@@ -32,12 +32,13 @@
             colors.forEach(function(c) {
                 var color = {
                     rgb: createRgbString(c),
-                    hex: createHexString(c)
+                    hex: createHexString(c),
+                    name: ''
                 };
 
-                // Get color name
+                // Get color name, used for autofill option
                 var name = ntc.name(color.hex)[1];
-                color.name = name.replace(/\s+/g, '-').toLowerCase();
+                color.autofill = name.replace(/\s+/g, '-').toLowerCase();
 
                 colorStorage.push(color);
             });

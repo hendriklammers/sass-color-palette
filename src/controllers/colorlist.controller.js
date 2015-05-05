@@ -11,10 +11,7 @@
 
         vm.settings = settingsService.getSettings();
         vm.pattern = PATTERN;
-        vm.colors = [
-            {hex: '#48251e', rgb: 'rgb(72, 37, 30)'},
-            {hex: '#ff0000', rgb: 'rgb(255, 255, 255, 0)'}
-        ];
+        vm.colors = [];
         vm.showErrors = false;
         vm.removeColor = removeColor;
         vm.submitColorForm = submitColorForm;
@@ -34,6 +31,8 @@
          */
         function handleSettingsUpdate(event, data) {
             vm.settings = data;
+
+            autofillColors();
         }
 
         /**
@@ -44,6 +43,8 @@
 
             // Make sure view gets updated
             $scope.$apply();
+
+            autofillColors();
         }
 
         /**
@@ -74,6 +75,32 @@
             ngDialog.open({
                 template: 'src/templates/resultdialog.html'
             });
+        }
+
+        /**
+         * Fills name field with generated color name
+         * @return {undefined}
+         */
+        function autofillColors() {
+            vm.colors.forEach(function(color) {
+                // Before doing anything store custom name values
+                if (color.name && color.name !== color.autofill) {
+                    color.custom = color.name;
+                }
+
+                // Only autofill when no custom name is entered
+                if (vm.settings.autofill) {
+                    if (!color.name) {
+                        color.name = color.autofill;
+                    }
+                } else {
+                    if (color.custom) {
+                        color.name = color.custom;
+                    } else {
+                        color.name = '';
+                    }
+                }
+            }); 
         }
     }
 
