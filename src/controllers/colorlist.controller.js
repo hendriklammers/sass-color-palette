@@ -28,6 +28,7 @@
 
         /**
          * Update settings on scope with settings from service
+         * @return {undefined}
          */
         function handleSettingsUpdate(event, data) {
             vm.settings = data;
@@ -37,6 +38,7 @@
 
         /**
          * get colors from service on colorsUpdate event
+         * @return {undefined}
          */
         function handleColorsUpdate() {
             vm.colors = colorService.getColors();
@@ -57,24 +59,18 @@
 
         /**
          * Validates form and proceed to create sass output
+         * @return {undefined}
          */
         function submitColorForm() {
             if ($scope.colorForm.$invalid) {
                 vm.showErrors = true;
             } else {
-                createOutput();
+                sassService.createSass(vm.colors);
+
+                ngDialog.open({
+                    template: 'src/templates/resultdialog.html'
+                });
             }
-        }
-
-        /**
-         * Creates sass variables and shows output in dialog
-         */
-        function createOutput() {
-            sassService.createSass(vm.colors);
-
-            ngDialog.open({
-                template: 'src/templates/resultdialog.html'
-            });
         }
 
         /**
