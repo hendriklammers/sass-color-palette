@@ -196,6 +196,11 @@
         .imagedrop-label-drag {
             display: none;
         }
+
+        .imagedrop-image-container {
+            transition: opacity 0.2s ease-out;
+            opacity: 0.7;
+        }
     }
 
     &.contains-image {
