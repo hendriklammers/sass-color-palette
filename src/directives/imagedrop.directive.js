@@ -91,7 +91,11 @@
                 imgElem.setAttribute('alt', 'imagedrop image');
                 imgElem.classList.add('imagedrop-image');
                 imgElem.classList.add('loading');
-                elem[0].appendChild(imgElem);
+
+                // Clear container and add image to it
+                var container = $(elem).find('.imagedrop-image-container');
+                container.empty();
+                container.append(imgElem);
 
                 elem[0].classList.add('contains-image');
 

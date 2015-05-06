@@ -29,6 +29,9 @@
          * @param {array} colors
          */
         function updateColors(colors) {
+            // start with clean color list
+            colorStorage = [];
+
             colors.forEach(function(c) {
                 var color = {
                     rgb: createRgbString(c),
