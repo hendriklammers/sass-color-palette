@@ -6,7 +6,7 @@
         .directive('imageDrop', imageDrop);
 
     /* @ngInject */
-    function imageDrop(colorService) {
+    function imageDrop(colorService, settingsService) {
         var directive = {
             restrict: 'EA',
             templateUrl: 'src/templates/imagedrop.html',
@@ -22,8 +22,7 @@
          * @param elem
          */
         function link(scope, elem) {
-            var COLOR_AMOUNT = 100,
-                colorThief = new ColorThief();
+            var colorThief = new ColorThief();
 
             disableDefault();
 
@@ -101,7 +100,8 @@
 
                 // Wait before the actual image is loaded
                 img.onload = function() {
-                    var colors = colorThief.getPalette(img, COLOR_AMOUNT);
+                    var size = settingsService.getSettings().amount, 
+                        colors = colorThief.getPalette(img, size);
 
                     colorService.updateColors(colors);
 
