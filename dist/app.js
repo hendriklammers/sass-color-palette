@@ -2,7 +2,10 @@
     'use strict';
 
     angular
-        .module('sassColorPalette', ['ui.sortable', 'ngDialog'])
+        .module('sassColorPalette', [
+            'ngDialog',
+            'ui.sortable'
+        ])
         .constant('PATTERN', /^[A-Za-z0-9\-\_]+$/)
         .constant('EVENTS', {
             COLORS_UPDATE: 'colorsUpdate',
@@ -30,7 +33,7 @@
         vm.submitColorForm = submitColorForm;
 
         vm.sortableOptions = {
-            handle: '.handle'
+            // handle: '.handle'
         };
 
         // Listen for changes in settings panel
@@ -260,9 +263,9 @@
                 imgElem.classList.add('loading');
 
                 // Clear container and add image to it
-                var container = $(elem).find('.imagedrop-image-container');
-                container.empty();
-                container.append(imgElem);
+                var container = elem[0].querySelectorAll('.imagedrop-image-container');
+                container[0].innerHTML = '';
+                container[0].appendChild(imgElem);
 
                 elem[0].classList.add('contains-image');
 
