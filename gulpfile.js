@@ -12,8 +12,6 @@ var path = {
         scripts: 'src/**/*.js',
         styles: 'sass/**/*.scss',
         vendor: [
-            'bower_components/jquery/dist/jquery.min.js',
-            'bower_components/jquery-ui/jquery-ui.min.js',
             'bower_components/color-thief/dist/color-thief.min.js',
             'bower_components/angular/angular.min.js',
             'bower_components/ngDialog/js/ngDialog.min.js',
