@@ -10,6 +10,7 @@
     "ngDialog": "~0.3.9"
   },
   "dependencies": {
-    "ntc.js": "~1.0.0"
+    "ntc.js": "~1.0.0",
+    "ng-sortable": "~1.2.2"
   }
 }

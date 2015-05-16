@@ -4,9 +4,9 @@
     </header>
     <form class="form-inline" ng-class="{'show-errors': colorList.showErrors}" name="colorForm" ng-submit="colorList.submitColorForm()" novalidate>
         <div class="panel-body sass-panel">
-            <ul class="list-unstyled color-list" ng-model="colorList.colors">
-                <li ng-repeat="color in colorList.colors">
-                    <div class="handle"></div>
+            <ul class="list-unstyled color-list" as-sortable="colorList.sortableOptions" ng-model="colorList.colors">
+                <li ng-repeat="color in colorList.colors" as-sortable-item>
+                    <div class="handle" as-sortable-item-handle></div>
                     <div class="color-preview" style="background-color: {{color.hex}}" title="{{color.hex}}"></div>
                     <span class="color-prefix">{{colorList.settings.type}}{{colorList.settings.prefix}}</span>
                     <input name="colorName" class="color-name-input form-control" ng-model="color.name" type="text" ng-pattern="colorList.pattern" required>

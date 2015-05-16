@@ -16,6 +16,10 @@
         vm.removeColor = removeColor;
         vm.submitColorForm = submitColorForm;
 
+        vm.sortableOptions = {
+            // handle: '.handle'
+        };
+
         // Listen for changes in settings panel
         $rootScope.$on(EVENTS.SETTINGS_CHANGE, handleSettingsUpdate);
 
