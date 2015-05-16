@@ -17,6 +17,7 @@ var path = {
             'bower_components/color-thief/dist/color-thief.min.js',
             'bower_components/angular/angular.min.js',
             'bower_components/ngDialog/js/ngDialog.min.js',
+            'bower_components/ng-sortable/dist/ng-sortable.min.js',
             'bower_components/ntc.js/ntc.js'
         ],
         dist: 'dist'
