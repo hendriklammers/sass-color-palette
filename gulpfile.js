@@ -16,7 +16,6 @@ var path = {
             'bower_components/jquery-ui/jquery-ui.min.js',
             'bower_components/color-thief/dist/color-thief.min.js',
             'bower_components/angular/angular.min.js',
-            'bower_components/angular-ui-sortable/sortable.min.js',
             'bower_components/ngDialog/js/ngDialog.min.js',
             'bower_components/ntc.js/ntc.js'
         ],
